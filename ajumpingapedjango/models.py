@@ -9,8 +9,14 @@ import os
 
 
 # my models
+
+
+class NewUser(models.Model):
+    name = models.CharField(max_length=30)
+	
+
 class Score(models.Model):
-    owner = models.ForeignKey(User)
+    owner = models.ForeignKey(NewUser)
     score = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

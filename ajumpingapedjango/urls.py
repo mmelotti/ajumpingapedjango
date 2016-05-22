@@ -16,12 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from ajumpingapedjango.api import ScoreAPI, UserAPI, GetAuthToken, SavegameAPI
+from ajumpingapedjango.api import ScoreAPI, MyScoreAPI, UserAPI, GetAuthToken, SavegameAPI
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 	
 	#api
-	url(r'^api/score', ScoreAPI.as_view()),
+	#url(r'^api/score', ScoreAPI.as_view()),
+	url(r'^api/score', MyScoreAPI.as_view()),
+	#url(r'^api/score', ScorAPI.as_view()),
 	url(r'^user/register', UserAPI.as_view()),
 ]

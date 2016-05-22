@@ -3,11 +3,18 @@ from django.contrib.auth.models import User
 from rest_framework import serializers, filters
 from ajumpingapedjango.models import Score, Savegame, Snippet
 
-class ScoreSerializer(serializers.ModelSerializer):
+		
+		
+class ScorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Score
         fields = ('id', 'score', 'owner_name', 'updated')
 
+		
+class ScoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Score
+        fields = ('id', 'score', 'owner_name', 'updated')
 		
 		
 class UserSerializer(serializers.ModelSerializer):

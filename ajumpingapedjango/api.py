@@ -5,6 +5,7 @@ from rest_framework import authentication, permissions
 from rest_framework import status
 from rest_framework import parsers
 from rest_framework import renderers
+from rest_framework.renderers import JSONRenderer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.generics import DestroyAPIView, GenericAPIView, ListAPIView, ListCreateAPIView, UpdateAPIView, CreateAPIView
@@ -12,20 +13,42 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from ajumpingapedjango.serializers import ScoreSerializer, CreateUserSerializer, SavegameSerializer
 from ajumpingapedjango.models import Score, Savegame
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+
+
+
+class MyScoreAPI(APIView):
+    """
+    A view that returns the count of active users in JSON.
+    """
+    renderer_classes = (JSONRenderer, )
+
+    def get(self, request, format=None):    
+        return Response('content')
+		
+    def post(self, request, format=None):    
+        return Response('contenpostt')
+
 
 class ScoreAPI(ListCreateAPIView):
     #authentication_classes = (authentication.TokenAuthentication,)
-    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    #permission_classes = (permissions.AllowAny,)
     
+	
     queryset = Score.objects.all()
     serializer_class = ScoreSerializer
-    
+	
     def filter_queryset(self, queryset):
         return queryset.order_by('-score')[0:5]
+	
+		
+class ScorAPI(ListCreateAPIView):
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-
+	def responder(request):
+	#this works, too!
+		return HttpResponse('Hello world')		
+		
 class UserAPI(DestroyAPIView, CreateAPIView):
     queryset = User.objects.all()
     serializer_class = CreateUserSerializer
@@ -61,6 +84,7 @@ class SavegameAPI(ListCreateAPIView, UpdateAPIView, DestroyAPIView):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
+		
     def list(self, request, *args, **kwargs):
         savegameType = ''
         if 'SavegameType' in self.request.data: 
