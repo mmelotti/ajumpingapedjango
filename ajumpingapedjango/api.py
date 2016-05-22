@@ -41,10 +41,10 @@ class GameBalanceAPI(APIView):
     """
 	
     def get(self, request, format=None): 
-        serialized_obj = serializers.serialize('json', [ GameBalance.objects.all()[:1].get(), ])
-        return HttpResponse(serialized_obj)
-
-		
+        #serialized_obj = serializers.serialize('json', [ GameBalance.objects.all()[:1].get(), ])
+        obj = GameBalance.objects.all()[:1].get()
+        return Response({'playerHorizontalSpeed': obj.playerHorizontalSpeed, 'brainSpawDeltaY': obj.brainSpawDeltaY, 'bananaSpawDeltaY': obj.bananaSpawDeltaY, 'jumpForce': obj.jumpForce, 'startJumpForce': obj.startJumpForce})
+     
 class ScoreAPI(ListCreateAPIView):
     #authentication_classes = (authentication.TokenAuthentication,)
     #permission_classes = (permissions.AllowAny,)
