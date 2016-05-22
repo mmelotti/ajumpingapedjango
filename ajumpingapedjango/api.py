@@ -1,4 +1,5 @@
 
+from django.core import serializers
 from django.contrib.auth.models import User
 from django.utils.datastructures import MultiValueDict
 from rest_framework import authentication, permissions
@@ -11,16 +12,16 @@ from rest_framework.response import Response
 from rest_framework.generics import DestroyAPIView, GenericAPIView, ListAPIView, ListCreateAPIView, UpdateAPIView, CreateAPIView
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
-from ajumpingapedjango.serializers import ScoreSerializer, CreateUserSerializer, SavegameSerializer
-from ajumpingapedjango.models import Score, Savegame
+from ajumpingapedjango.serializers import ScoreSerializer, CreateUserSerializer, SavegameSerializer, GameBalanceSerializer
+from ajumpingapedjango.models import Score, Savegame, GameBalance
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
-
+import json
 
 
 class MyScoreAPI(APIView):
     """
-    A view that returns the count of active users in JSON.
+    Return Score
     """
     renderer_classes = (JSONRenderer, )
 
@@ -30,7 +31,20 @@ class MyScoreAPI(APIView):
     def post(self, request, format=None):    
         return Response('contenpostt')
 
+		
 
+class GameBalanceAPI(APIView):
+    #authentication_classes = (authentication.TokenAuthentication,)
+    #permission_classes = (permissions.AllowAny,)
+    """
+    Return Game Balance Parameters
+    """
+	
+    def get(self, request, format=None): 
+        serialized_obj = serializers.serialize('json', [ GameBalance.objects.all()[:1].get(), ])
+        return HttpResponse(serialized_obj)
+
+		
 class ScoreAPI(ListCreateAPIView):
     #authentication_classes = (authentication.TokenAuthentication,)
     #permission_classes = (permissions.AllowAny,)

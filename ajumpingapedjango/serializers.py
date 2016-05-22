@@ -1,7 +1,7 @@
 
 from django.contrib.auth.models import User
 from rest_framework import serializers, filters
-from ajumpingapedjango.models import Score, Savegame, Snippet
+from ajumpingapedjango.models import Score, Savegame, Snippet, GameBalance
 
 		
 		
@@ -15,6 +15,11 @@ class ScoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Score
         fields = ('id', 'score', 'owner_name', 'updated')
+		
+class GameBalanceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GameBalance
+        fields = ('id', 'playerHorizontalSpeed', 'brainSpawDeltaY', 'bananaSpawDeltaY', 'jumpForce', 'startJumpForce')		
 		
 		
 class UserSerializer(serializers.ModelSerializer):

@@ -13,8 +13,21 @@ import os
 
 class NewUser(models.Model):
     name = models.CharField(max_length=30)
-	
 
+
+
+class GameBalance(models.Model):
+    playerHorizontalSpeed = models.FloatField(default=0.0)
+    brainSpawDeltaY = models.FloatField(default=0.0)
+    bananaSpawDeltaY = models.FloatField(default=0.0)
+    jumpForce = models.FloatField(default=0.0)
+    startJumpForce = models.FloatField(default=0.0)
+	
+    class Meta:
+	    verbose_name = "Game Balance"
+	    verbose_name_plural = "Game Balance"
+
+		
 class Score(models.Model):
     owner = models.ForeignKey(NewUser)
     score = models.IntegerField()

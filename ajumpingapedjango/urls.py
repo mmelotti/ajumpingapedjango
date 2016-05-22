@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from ajumpingapedjango.api import ScoreAPI, MyScoreAPI, UserAPI, GetAuthToken, SavegameAPI
+from ajumpingapedjango.api import ScoreAPI, MyScoreAPI, UserAPI, GameBalanceAPI, GetAuthToken, SavegameAPI
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,4 +26,5 @@ urlpatterns = [
 	url(r'^api/score', MyScoreAPI.as_view()),
 	#url(r'^api/score', ScorAPI.as_view()),
 	url(r'^user/register', UserAPI.as_view()),
+	url(r'^api/gamebalance', GameBalanceAPI.as_view()),
 ]
