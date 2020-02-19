@@ -1,2 +1,2 @@
 # ajumpingapedjango
-a thinking ape challenge - endless jumping game
+a thinking ape challenge - endless jumping game developed in hackton (Vanhack)
