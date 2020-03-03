@@ -3,4 +3,4 @@ A thinking ape challenge - endless jumping game developed in a hackathon (Vanhac
 
 Using DJango in server. UI developed with Unity. 
 
-Link to Clientv (game):
+Link to Client code (game):
