@@ -46,7 +46,7 @@ class GameBalanceAPI(APIView):
         return Response({'playerHorizontalSpeed': obj.playerHorizontalSpeed, 'brainSpawDeltaY': obj.brainSpawDeltaY, 'bananaSpawDeltaY': obj.bananaSpawDeltaY, 'jumpForce': obj.jumpForce, 'startJumpForce': obj.startJumpForce})
      
 class ScoreAPI(ListCreateAPIView):
-    #authentication_classes = (authentication.TokenAuthentication,)
+    #authentication_classes = (authentication.TokenAuthentication,) no need
     #permission_classes = (permissions.AllowAny,)
     
 	
