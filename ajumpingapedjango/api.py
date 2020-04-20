@@ -47,8 +47,7 @@ class GameBalanceAPI(APIView):
      
 class ScoreAPI(ListCreateAPIView):
     #authentication_classes = (authentication.TokenAuthentication,) no need
-    #permission_classes = (permissions.AllowAny,)
-    
+    #permission_classes = (permissions.AllowAny,)    no need
 	
     queryset = Score.objects.all()
     serializer_class = ScoreSerializer
@@ -97,7 +96,6 @@ class SavegameAPI(ListCreateAPIView, UpdateAPIView, DestroyAPIView):
     
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-
 		
     def list(self, request, *args, **kwargs):
         savegameType = ''
